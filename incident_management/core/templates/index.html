@@ -1,0 +1,126 @@
+{% extends "model-page.html" %}
+
+{% block content %} 
+
+<div class="container text-center mt-4">
+    <h2>DIA - Gestão de Incidentes</h2>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card p-3 shadow">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card p-3 shadow">
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="card p-3 shadow">
+                <canvas id="myChart1"></canvas>
+            </div>
+        </div>
+
+        <div class="col-12 mb-4">
+            <div class="card p-3 shadow">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    new Chart(document.getElementById('myChart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+            labels: ["Aberto", "Em Progresso", "Fechado"],
+            datasets: [{
+                data: [12, 19, 3],
+                backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(255, 206, 86, 0.7)', 'rgba(75, 192, 192, 0.7)'],
+                borderWidth: 2
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { 
+                legend: { position: 'right' },
+                title: { display: true, text: 'Status dos Incidentes', font: { size: 16 } }
+            } 
+        }
+    });
+
+    new Chart(document.getElementById('myChart1').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            datasets: [{
+                label: 'Incidentes Resolvidos',
+                data: [12, 19, 3, 12, 17, 5, 22, 39, 20, 16, 16, 23],
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderWidth: 1
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { 
+                legend: { position: 'top' },
+                title: { display: true, text: 'Incidentes Resolvidos por Mês', font: { size: 16 } }
+            }, 
+            scales: { y: { beginAtZero: true } } 
+        }
+    });
+
+    // Gráfico de Linha
+    new Chart(document.getElementById('myChart2').getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            datasets: [{
+                label: 'Incidentes ao longo do ano',
+                data: [5, 12, 9, 15, 18, 22, 30, 28, 25, 21, 19, 17],
+                borderColor: 'rgba(255, 99, 132, 0.8)',
+                backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { 
+                legend: { position: 'top' },
+                title: { display: true, text: 'Evolução dos Incidentes', font: { size: 16 } }
+            }, 
+            scales: { y: { beginAtZero: true } } 
+        }
+    });
+
+    new Chart(document.getElementById('myChart3').getContext('2d'), {
+        type: 'radar',
+        data: {
+            labels: ["Hardware", "Software", "Rede", "Segurança", "Outros"],
+            datasets: [{
+                label: 'Incidentes por Categoria',
+                data: [8, 15, 10, 7, 5],
+                backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2
+            }]
+        },
+        options: { 
+            responsive: true, 
+            plugins: { 
+                legend: { position: 'top' },
+                title: { display: true, text: 'Tipos de Incidentes', font: { size: 16 } }
+            }, 
+            scales: { r: { beginAtZero: true } } 
+        }
+    });
+</script>
+
+{% endblock %}

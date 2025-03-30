@@ -1,0 +1,87 @@
+<button id="toggleSidebar" class="btn btn-dark text-white-50" style="float: left;" >☰</button>
+
+<!-- Sidebar -->
+<nav id="sidebar" class="sidebar bg-dark">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-white-50" href="{% url 'index'%}">Página Inicial</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white-50" href="{% url 'incident_record:incident-list' %}">
+                Incidentes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white-50" href="#">Usuários</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white-50" href="#">Configurações</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white-50" href="{% url 'logout' %}">Sair</a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 93vh;
+    width: 250px;
+    padding-top: 20px;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.sidebar .nav-link {
+    padding: 10px 15px;
+    display: block;
+    color: white;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+#toggleSidebar {
+    position: fixed;
+    top: 10px;
+    left: 10px; /* Ajusta conforme o menu */
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    padding: 0;
+}
+
+.content.collapsed {
+    margin-left: 0;
+}
+
+#toggleSidebar.collapsed {
+    left: 10px;
+}
+</style>
+
+<script>
+    document.getElementById("toggleSidebar").addEventListener("click", function() {
+        let sidebar = document.getElementById("sidebar");
+        let content = document.querySelector(".content");
+        let button = document.getElementById("toggleSidebar");
+
+        sidebar.classList.toggle("collapsed");
+        content.classList.toggle("collapsed");
+        button.classList.toggle("collapsed");
+    });
+</script>
+
